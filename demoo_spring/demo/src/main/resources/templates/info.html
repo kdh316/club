@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>동아리 소개</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            width: 900px;
+            margin: 100px auto;
+        }
+
+        h1 {
+            font-size: 54px;
+            margin-bottom: 60px;
+        }
+
+        .description-box {
+            width: 700px;
+            margin: 0 auto;
+            padding: 45px 70px;
+            border: 1px solid #cccccc;
+            border-radius: 14px;
+            text-align: left;
+        }
+
+        pre {
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            line-height: 1.9;
+            white-space: pre-wrap;
+            margin: 0;
+            padding-top: 15px;
+        }
+
+        .back {
+            margin-top: 55px;
+        }
+
+        .back a {
+            display: inline-block;
+            width: 260px;
+            padding: 18px 0;
+            border: 1px solid #cccccc;
+            border-radius: 12px;
+            text-decoration: none;
+            color: black;
+            font-size: 22px;
+        }
+
+        .back a:hover {
+            background-color: #f3f3f3;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 th:text="${club.clubName + ' 동아리 소개'}"></h1>
+
+    <div class="description-box">
+        <pre th:text="${club.description}"></pre>
+    </div>
+
+    <div class="back">
+        <a th:href="@{/club(clubName=${club.clubName})}">
+            ← 뒤로가기
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

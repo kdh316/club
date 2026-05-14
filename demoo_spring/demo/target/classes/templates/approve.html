@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>가입 승인 목록</title>
+
+    <style>
+
+        body {
+            text-align: center;
+            font-family: "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+            background-color: white;
+        }
+
+        .container {
+            width: 900px;
+            margin: 220px auto;
+        }
+
+        h1 {
+            font-size: 54px;
+            margin-bottom: 65px;
+        }
+
+        p {
+            font-size: 34px;
+            transform: translateY(70px);
+        }
+
+        table {
+            margin: 50px auto;
+            border-collapse: collapse;
+            font-size: 24px;
+            width: 760px;
+        }
+
+        th, td {
+            border: 1px solid #cccccc;
+            padding: 22px;
+        }
+
+        th {
+            background-color: #f8f8f8;
+        }
+
+        button {
+            width: 110px;
+            height: 48px;
+            font-size: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f3f3f3;
+        }
+
+        .back {
+            margin-top: 200px;
+        }
+
+        .back a {
+            font-size: 22px;
+            text-decoration: none;
+            color: black;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 th:text="${clubName + ' 가입 승인 목록'}"></h1>
+
+    <p th:if="${#lists.isEmpty(applications)}">
+        대기 중인 신청자가 없습니다.
+    </p>
+
+    <table th:unless="${#lists.isEmpty(applications)}">
+
+        <tr>
+            <th>학번</th>
+            <th>이름</th>
+            <th>수락</th>
+        </tr>
+
+        <tr th:each="app : ${applications}">
+
+            <td th:text="${app.student.studentId}"></td>
+            <td th:text="${app.student.name}"></td>
+
+            <td>
+                <form action="/club/approve" method="post">
+
+                    <input type="hidden" name="clubName" th:value="${clubName}">
+                    <input type="hidden" name="studentId" th:value="${app.student.studentId}">
+
+                    <button type="submit">
+                        수락
+                    </button>
+
+                </form>
+            </td>
+
+        </tr>
+
+    </table>
+
+    <div class="back">
+        <a th:href="@{/club(clubName=${clubName})}">
+            ← 뒤로가기
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

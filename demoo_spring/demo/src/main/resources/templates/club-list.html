@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>동아리 선택</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 900px;
+            margin: 240px auto;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        .club-box {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 120px;
+        }
+
+        .club-box a {
+            width: 220px;
+            padding: 35px 0;
+            border: 1px solid black;
+            text-decoration: none;
+            color: black;
+            font-size: 28px;
+            border-radius: 10px;
+        }
+
+        .club-box a:hover {
+            background-color: #eeeeee;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>광운대학교 동아리 시스템</h1>
+
+    <div class="club-box">
+
+        <a th:each="club : ${clubs}"
+           th:href="@{/club(clubName=${club.clubName})}"
+           th:text="${club.clubName}">
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

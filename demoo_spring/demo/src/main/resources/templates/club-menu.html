@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>동아리 메뉴</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+        }
+
+        .container {
+            width: 1000px;
+            margin: 180px auto;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        .menu-box {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 120px;
+        }
+
+        .menu-box a {
+            width: 200px;
+            padding: 35px 0;
+            border: 1px solid black;
+            text-decoration: none;
+            color: black;
+            font-size: 24px;
+            border-radius: 10px;
+        }
+
+        .menu-box a:hover {
+            background-color: #eeeeee;
+        }
+
+        .back {
+            margin-top: 100px;
+        }
+
+        .back a {
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 th:text="${clubName + ' 동아리'}"></h1>
+
+    <div class="menu-box">
+        <a th:href="@{/club/info(clubName=${clubName})}">소개</a>
+        <a th:href="@{/club/members(clubName=${clubName})}">회원목록</a>
+        <a th:href="@{/club/apply(clubName=${clubName})}">가입신청</a>
+        <a th:href="@{/club/approve(clubName=${clubName})}">가입승인</a>
+    </div>
+
+    <div class="back">
+        <a href="/">← 동아리 선택으로 돌아가기</a>
+    </div>
+
+</div>
+
+</body>
+</html>

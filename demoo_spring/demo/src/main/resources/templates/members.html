@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 목록</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        .container { width: 900px; margin: 120px auto; }
+        h1 { font-size: 48px; }
+        table {
+            margin: 60px auto;
+            border-collapse: collapse;
+            font-size: 24px;
+            width: 700px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 20px;
+        }
+        a { font-size: 20px; text-decoration: none; color: black; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${clubName + ' 회원 목록'}"></h1>
+
+    <table>
+        <tr>
+            <th>직책</th>
+            <th>학번</th>
+            <th>이름</th>
+        </tr>
+        <tr th:each="member : ${members}">
+            <td th:text="${member.role}"></td>
+            <td th:text="${member.studentId}"></td>
+            <td th:text="${member.name}"></td>
+        </tr>
+    </table>
+
+    <a th:href="@{/club(clubName=${clubName})}">← 뒤로가기</a>
+</div>
+</body>
+</html>
